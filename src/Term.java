@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Term {
-    private int credit;
-    private double avg;
+    private int credit=0;
+    private double avg=0;
     private int termNumber;
      ArrayList<Course> courses=new ArrayList<>();
     public int getTermNumber() {
