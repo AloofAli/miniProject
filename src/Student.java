@@ -11,13 +11,13 @@ public class Student {
     private String NationalId;
     private String StudentId;
     private BeheshtiUniversityField field;
-    private int currentTerm;
+    private int currentTerm=1;
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Term> terms = new ArrayList<>();
 
     private boolean isDormitory;
-    private double totalAverage;
-    private double currentAverage;
+    private double totalAverage=0;
+    private double currentAverage=0;
     private int totalPassedCredit;
 
     public void addCourse(Course course) {
@@ -135,6 +135,9 @@ public class Student {
     }
 
     public int termCreditDetail(int term) {
+        if(terms.size()<term)
+            throw new DontHaveThisTermException();
+
         return terms.get(term - 1).getCredit();
     }
 
@@ -143,6 +146,8 @@ public class Student {
 
     }
     public double termAvgDetail(int term) {
+        if(terms.size()<term)
+            throw new DontHaveThisTermException();
         return terms.get(term - 1).avgCalculate();
     }
 
@@ -166,6 +171,9 @@ public class Student {
     public void totalAvgPrinter(){
         totalAvg();
         System.out.println(totalAverage);
+    }
+    public void CurrentTermAvgPrinter(){
+        System.out.println(termAvgDetail());
     }
 
 }
