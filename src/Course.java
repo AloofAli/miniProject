@@ -5,16 +5,23 @@ public class Course {
 BeheshtiUniversityField beheshtiUniversityField;
 String name;
 int credit;
+    StudentCourse studentCourseVersion;
+    public Course(String name, int credit) {
+        this.name = name;
+        this.credit = credit;
+      studentCourseVersion=new StudentCourse(name, credit);
+    }
 Teacher teacher;
+
 
 ArrayList<Student>students=new ArrayList<>();
 ArrayList<Assignment> AllAssignment=new ArrayList<>();
 ArrayList<Assignment> ActiveAssignment=new ArrayList<>();
 
-public void AddStudent(Student student){
 
+    public void AddStudent(Student student){
     students.add(student);
-    student.addCourse(new StudentCourse(name, credit));
+    student.addCourse(this);
 }
 public void RemoveStudent(Student student){
     students.remove(student);

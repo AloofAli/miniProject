@@ -15,9 +15,10 @@ public class Student {
     private String StudentId;
     private BeheshtiUniversityField field;
     private String phoneNumber;
-    private int currentTerm=1;
+    private int currentTerm=0;
 
      ArrayList<Term> terms = new ArrayList<>();
+
 
     private boolean isDormitory;
     private double totalAverage=0;
@@ -25,6 +26,7 @@ public class Student {
 
     int totalPassedCredit=0;
     public int getTotalPassedCredit() {
+        // have test
         for (int i = 0; i < terms.size(); i++) {
             totalPassedCredit+=terms.get(i).getTotalThisTermCredit();
         }
@@ -33,8 +35,9 @@ public class Student {
 
 
 
-    public void addCourse(StudentCourse course) {
-        terms.get(currentTerm-1).studentCourses.add(course);
+    public void addCourse(Course course) {
+        // have test
+            terms.getLast().studentCourses.add(course.studentCourseVersion);
 
     }
     public String getName() {
@@ -115,7 +118,7 @@ public class Student {
 
 
 
-    public ArrayList<StudentCourse> termCoursesDetail(int term) {
+    public ArrayList<StudentCourse> termCourseDetail(int term) {
         return terms.get(term - 1).studentCourses;
     }
 
