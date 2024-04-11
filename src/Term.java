@@ -4,7 +4,7 @@ public class Term {
     private int credit=0;
     private double avg=0;
     private int termNumber;
-     ArrayList<Course> courses=new ArrayList<>();
+     ArrayList<StudentCourse> studentCourses =new ArrayList<>();
     public int getTermNumber() {
         return termNumber;
     }
@@ -19,9 +19,14 @@ public class Term {
         this.termNumber = termNumber;
     }
     public double avgCalculate(){
-        //TODO
-        return 0;
+        double sum=0;
+        for (int i = 0; i <studentCourses.size() ; i++) {
+            sum+= studentCourses.get(i).getScore()*studentCourses.get(i).getCredit();
+        }
+        return sum/credit;
     }
 
 
+
 }
+
