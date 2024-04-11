@@ -23,11 +23,14 @@ public class Teacher {
     private int numberOfCourses;
 
     public void AddStudent(Course course,Student student) {
-        courses.get(courses.indexOf(course)).students.add(student);
+        courses.get(courses.indexOf(course)).AddStudent(student);
+        student.addCourse(new StudentCourse(course.name,course.credit));
     }
 
     public void RemoveStudent(Course course,Student student) {
-        courses.get(courses.indexOf(course)).students.remove(student);
+        courses.get(courses.indexOf(course)).RemoveStudent(student);
+        StudentCourse removeHelper=new StudentCourse(name, course.credit);
+        student.terms.getLast().studentCourses.remove(removeHelper);
     }
 
     public void AddAssignment(Course course,Assignment assignment) {

@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
 public class Term {
-    private int credit=0;
+
+
+    int totalThisTermCredit =0;
     private double avg=0;
     private int termNumber;
      ArrayList<StudentCourse> studentCourses =new ArrayList<>();
@@ -12,9 +14,6 @@ public class Term {
     public double getAvg() {
         return avg;
     }
-    public int getCredit() {
-        return credit;
-    }
     public Term(int termNumber) {
         this.termNumber = termNumber;
     }
@@ -23,7 +22,17 @@ public class Term {
         for (int i = 0; i <studentCourses.size() ; i++) {
             sum+= studentCourses.get(i).getScore()*studentCourses.get(i).getCredit();
         }
-        return sum/credit;
+        for (int i = 0; i <studentCourses.size() ; i++) {
+            totalThisTermCredit +=studentCourses.get(i).getCredit();
+        }
+
+        return sum/ totalThisTermCredit;
+    }
+    public int getTotalThisTermCredit() {
+        for (int i = 0; i <studentCourses.size() ; i++) {
+            totalThisTermCredit +=studentCourses.get(i).getCredit();
+        }
+        return totalThisTermCredit;
     }
 
 

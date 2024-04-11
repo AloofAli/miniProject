@@ -23,6 +23,15 @@ public class Student {
     private double totalAverage=0;
     private double currentAverage=0;
 
+    int totalPassedCredit=0;
+    public int getTotalPassedCredit() {
+        for (int i = 0; i < terms.size(); i++) {
+            totalPassedCredit+=terms.get(i).getTotalThisTermCredit();
+        }
+        return totalPassedCredit;
+    }
+
+
 
     public void addCourse(StudentCourse course) {
         terms.get(currentTerm-1).studentCourses.add(course);
@@ -36,9 +45,6 @@ public class Student {
         this.name = name;
     }
 
-    public DateFormat getDateFormat() {
-        return dateFormat;
-    }
 
     public String getFatherName() {
         return FatherName;
@@ -82,13 +88,6 @@ public class Student {
 
 
 
-    public double getTotalAverage() {
-        return totalAverage;
-    }
-
-    public void setTotalAverage(double totalAverage) {
-        this.totalAverage = totalAverage;
-    }
 
     public double getCurrentAverage() {
         return currentAverage;
@@ -129,11 +128,11 @@ public class Student {
         if(terms.size()<term)
             throw new DontHaveThisTermException();
 
-        return terms.get(term - 1).getCredit();
+        return terms.get(term - 1).getTotalThisTermCredit();
     }
 
     public int termCreditDetail() {
-        return terms.get(currentTerm - 1).getCredit();
+        return terms.get(currentTerm - 1).getTotalThisTermCredit();
 
     }
     public double termAvgDetail(int term) {
@@ -158,11 +157,7 @@ public class Student {
            sum+= terms.get(i).studentCourses.get(j).getScore()*terms.get(i).studentCourses.get(j).getCredit();
             }
         }
-        int totalPassedCredit=0;
-        for (int i = 0; i < terms.size(); i++) {
-            totalPassedCredit+=terms.get(i).getCredit();
-        }
-        totalAverage=sum/totalPassedCredit;
+        totalAverage=sum/getTotalPassedCredit();
         return totalAverage;
     }
     public void AllCoursePrinter(){
@@ -171,11 +166,8 @@ public class Student {
         }
     }
     public void TotalPassedCreditPrinter(){
-        int totalPassedCredit=0;
-        for (int i = 0; i < terms.size(); i++) {
-            totalPassedCredit+=terms.get(i).getCredit();
-        }
-        System.out.println(totalPassedCredit);
+
+        System.out.println(getTotalPassedCredit());
     }
     public void totalAvgPrinter(){
         System.out.println(totalAvg());

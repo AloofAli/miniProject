@@ -3,6 +3,12 @@ public class StudentCourse {
     Double score=0.0;
 
     int credit;
+
+    public StudentCourse(String name, int credit) {
+        this.name = name;
+        this.credit = credit;
+    }
+
     public int getCredit() {
         return credit;
     }

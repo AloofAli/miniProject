@@ -4,7 +4,7 @@ import java.util.Collections;
 public class Course {
 BeheshtiUniversityField beheshtiUniversityField;
 String name;
-
+int credit;
 Teacher teacher;
 
 ArrayList<Student>students=new ArrayList<>();
@@ -12,10 +12,14 @@ ArrayList<Assignment> AllAssignment=new ArrayList<>();
 ArrayList<Assignment> ActiveAssignment=new ArrayList<>();
 
 public void AddStudent(Student student){
+
     students.add(student);
+    student.addCourse(new StudentCourse(name, credit));
 }
 public void RemoveStudent(Student student){
     students.remove(student);
+    StudentCourse removeHelper=new StudentCourse(name, credit);
+    student.terms.getLast().studentCourses.remove(removeHelper);
 }
 public String GetTopStudent() {
     ArrayList<StudentCourse> sorted = new ArrayList<>();
