@@ -21,7 +21,7 @@ public class TeacherTest {
         teacher.AddCourse(course);
         student.newTerm();
         teacher.AddStudent(course,student);
-        Assertions.assertEquals(student.terms.getLast().studentCourses.getLast(),course.studentCourseVersion);
+        Assertions.assertEquals(student.terms.getLast().studentCourses.getLast(),course.studentCourseVersion.getLast());
         teacher.RemoveStudent(course,student);
         Assertions.assertEquals(student.terms.getLast().studentCourses,new ArrayList<>());
         }

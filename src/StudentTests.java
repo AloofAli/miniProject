@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 public class StudentTests {
 
     /**
@@ -93,17 +96,18 @@ public class StudentTests {
         student.addCourse(course2);
         student.addCourse(course3);
         student.addCourse(course4);
-        course5.AddStudent(student);
+        teacher.AddCourse(course5);
+        teacher.AddStudent(course5,student);
         teacher.AddCourse(course6);
         teacher.AddStudent(course6,student);
         ArrayList<StudentCourse> result=new ArrayList<StudentCourse>();
-        result.add(course.studentCourseVersion);
-        result.add(course2.studentCourseVersion);
-        result.add(course3.studentCourseVersion);
-        result.add(course4.studentCourseVersion);
-        result.add(course5.studentCourseVersion);
-        result.add(course6.studentCourseVersion);
-        Assertions.assertEquals(result,student.termCourseDetail());
+        result.add(course.studentCourseVersion.getFirst());
+        result.add(course2.studentCourseVersion.getFirst());
+        result.add(course3.studentCourseVersion.getFirst());
+        result.add(course4.studentCourseVersion.getFirst());
+        result.add(course5.studentCourseVersion.getFirst());
+        result.add(course6.studentCourseVersion.getFirst());
+        assertEquals(result,student.termCourseDetail());
     }
     /**
      * Rigorously test the `termCourseDetail` function of the `Student` class.
@@ -143,9 +147,9 @@ public class StudentTests {
         teacher.AddCourse(course6);
         teacher.AddStudent(course6,student);
         ArrayList<StudentCourse> result=new ArrayList<StudentCourse>();
-        result.add(course4.studentCourseVersion);
-        result.add(course5.studentCourseVersion);
-        result.add(course6.studentCourseVersion);
+        result.add(course4.studentCourseVersion.getFirst());
+        result.add(course5.studentCourseVersion.getFirst());
+        result.add(course6.studentCourseVersion.getFirst());
         Assertions.assertEquals(result,student.termCourseDetail(2));
     }
 

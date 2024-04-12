@@ -11,11 +11,16 @@ public class CourseTest {
     public void testGetTopStudent(){
         Student student1 =new Student();
         Student student2 =new Student();
-        student2.setName("Ali");
         Student student3 =new Student();
         Student student4 =new Student();
         Student student5 =new Student();
         Student student6 =new Student();
+        student1.setName("Ali");
+        student2.setName("Ali2");
+        student3.setName("Ali3");
+        student4.setName("Ali4");
+        student5.setName("Ali5");
+        student6.setName("Ali6");
         Teacher teacher =new Teacher();
         Course course =new Course("AP",3);
         teacher.AddCourse(course);
@@ -37,7 +42,7 @@ public class CourseTest {
         teacher.Score(course,student4,14);
         teacher.Score(course,student5,18.5);
         teacher.Score(course,student6,9);
-        Assertions.assertEquals(20,course.GetTopStudent());
+        Assertions.assertEquals(student2,course.GetTopStudent());
 
 
     }
