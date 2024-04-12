@@ -52,98 +52,56 @@ public class Student {
         course.AddStudent(this);
     }
 
-    /**
-     * Returns the name of the student.
-     * @return the name of the student
-     */
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the name of the student.
-     * @param name the name of the student
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Returns the father's name of the student.
-     * @return the father's name of the student
-     */
+
     public String getFatherName() {
         return FatherName;
     }
 
-    /**
-     * Sets the father's name of the student.
-     * @param fatherName the father's name of the student
-     */
     public void setFatherName(String fatherName) {
         FatherName = fatherName;
     }
 
-    /**
-     * Returns the birth date of the student.
-     * @return the birth date of the student
-     */
     public Date getBirthDate() {
         return BirthDate;
     }
-
-    /**
-     * Sets the birth date of the student.
-     * @param birthDate the birth date of the student
-     */
     public void setBirthDate(Date birthDate) {
         BirthDate = birthDate;
     }
 
-    /**
-     * Returns the national ID of the student.
-     * @return the national ID of the student
-     */
+
     public String getNationalId() {
         return NationalId;
     }
 
-    /**
-     * Sets the national ID of the student.
-     * @param nationalId the national ID of the student
-     */
+
     public void setNationalId(String nationalId) {
         NationalId = nationalId;
     }
 
-    /**
-     * Returns the student ID of the student.
-     * @return the student ID of the student
-     */
     public String getStudentId() {
         return StudentId;
     }
 
-    /**
-     * Sets the student ID of the student.
-     * @param studentId the student ID of the student
-     */
+
     public void setStudentId(String studentId) {
         StudentId = studentId;
     }
 
-    /**
-     * Returns the field of study of the student.
-     * @return the field of study of the student
-     */
+
     public BeheshtiUniversityField getField() {
         return field;
     }
 
-    /**
-     * Sets the field of study of the student.
-     * @param field the field of study of the student
-     */
+
     public void setField(BeheshtiUniversityField field) {
         this.field = field;
     }
@@ -262,34 +220,21 @@ public class Student {
         System.out.println(termAvgDetail());
     }
 
-    /**
-     * Returns the gender of the student.
-     * @return the gender of the student
-     */
+
     public Gender getGender() {
         return gender;
     }
 
-    /**
-     * Sets the gender of the student.
-     * @param gender the gender of the student
-     */
+
     public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    /**
-     * Returns the phone number of the student.
-     * @return the phone number of the student
-     */
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    /**
-     * Sets the phone number of the student.
-     * @param phoneNumber the phone number of the student
-     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

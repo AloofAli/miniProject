@@ -10,13 +10,19 @@ public class Term {
     public int getTermNumber() {
         return termNumber;
     }
-
-    public double getAvg() {
-        return avg;
-    }
+    /**
+     * Constructs a term with the given term number.
+     *
+     * @param termNumber The term number (e.g., 1, 2, 3).
+     */
     public Term(int termNumber) {
         this.termNumber = termNumber;
     }
+    /**
+     * Calculates the average score for this term.
+     *
+     * @return The average score.
+     */
     public double avgCalculate(){
         double sum=0;
         for (int i = 0; i <studentCourses.size() ; i++) {
@@ -28,17 +34,16 @@ public class Term {
 
         return sum/ totalThisTermCredit;
     }
+    /**
+     * Gets the total credits for this term.
+     *
+     * @return The total credits.
+     */
     public int getTotalThisTermCredit() {
         for (int i = 0; i <studentCourses.size() ; i++) {
             totalThisTermCredit +=studentCourses.get(i).getCredit();
         }
         return totalThisTermCredit;
     }
-    public void setScore(StudentCourse studentCourse,double score) {
-        studentCourse.score=score;
-    }
-
-
-
 }
 

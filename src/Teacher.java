@@ -22,32 +22,69 @@ public class Teacher {
     private String phoneNumber;
     private BeheshtiUniversityField field;
     private int numberOfCourses;
-
+    /**
+     * Adds a course to the teacher's list of courses.
+     * Associates the teacher's name with the course.
+     *
+     * @param course The course to be added.
+     */
     public void AddCourse(Course course){
         courses.add(course);
         course.teacherName=name;
     }
+    /**
+     * Removes a course from the teacher's list of courses.
+     *
+     * @param course The course to be removed.
+     */
     public void RemoveCourse(Course course){
         courses.remove(course);
     }
+    /**
+     * Adds a student to a specific course.
+     *
+     * @param course  The course to which the student will be added.
+     * @param student The student to be added.
+     */
     public void AddStudent(Course course,Student student) {
         course.AddStudent(student);
     }
-
+    /**
+     * Removes a student from a specific course.
+     *
+     * @param course  The course from which the student will be removed.
+     * @param student The student to be removed.
+     */
     public void RemoveStudent(Course course,Student student) {
         course.RemoveStudent(student);
 
     }
-
+    /**
+     * Adds an assignment to a specific course.
+     *
+     * @param course     The course to which the assignment will be added.
+     * @param assignment The assignment to be added.
+     */
     public void AddAssignment(Course course,Assignment assignment) {
         course.AllAssignments.add(assignment);
     }
-
+    /**
+     * Removes an assignment from a specific course.
+     *
+     * @param course     The course from which the assignment will be removed.
+     * @param assignment The assignment to be removed.
+     */
     public void RemoveAssignment(Course course , Assignment assignment) {
         if (assignment.Active){
         course.ActiveAssignments.remove(assignment);}
     }
-
+    /**
+     * Scores an assignment for a specific student in a course.
+     *
+     * @param course The course in which the assignment was submitted.
+     * @param student The student who submitted the assignment.
+     * @param score The score to assign to the assignment.
+     */
     public void Score(Course course, Student student, double score) {
         for (int i = 0; i <student.terms.getLast().studentCourses.size() ; i++) {
 
@@ -56,12 +93,23 @@ public class Teacher {
         }
         }
     }
-
+    /**
+     * Edits the deadline for a specific assignment in a course.
+     *
+     * @param course The course containing the assignment.
+     * @param assignment The assignment whose deadline will be edited.
+     * @param newDate The new deadline date.
+     */
     public void DeadLineTimeEdit(Course course, Assignment assignment, Date newDate) {
         courses.get(courses.indexOf(course)).AllAssignments.get( courses.get(courses.indexOf(course)).AllAssignments.indexOf(assignment)).setDeadLine(newDate);
         courses.get(courses.indexOf(course)).ActiveAssignments.get( courses.get(courses.indexOf(course)).ActiveAssignments.indexOf(assignment)).setDeadLine(newDate);
     }
-
+    /**
+     * Activates an assignment in a course.
+     *
+     * @param course The course containing the assignment.
+     * @param assignment The assignment to be activated.
+     */
     public void AssignmentActivator(Course course, Assignment assignment ){
         courses.get(courses.indexOf(course)).AllAssignments.get( courses.get(courses.indexOf(course)).AllAssignments.indexOf(assignment)).setActive(true);
         courses.get(courses.indexOf(course)).ActiveAssignments.add(assignment);}

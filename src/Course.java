@@ -1,5 +1,8 @@
 import java.util.*;
-
+/**
+ * Represents a course in an academic program.
+ * Each course has a name, credit value, associated students, and assignments.
+ */
 public class Course {
     BeheshtiUniversityField beheshtiUniversityField;
     String name;
@@ -18,17 +21,33 @@ public class Course {
     ArrayList<Assignment> AllAssignments = new ArrayList<>();
     ArrayList<Assignment> ActiveAssignments = new ArrayList<>();
 
+    /**
+     * Adds a student to this course.
+     * Associates the student with the course and updates the student's term information.
+     *
+     * @param student The student to be added.
+     */
     public void AddStudent(Student student) {
         students.add(student);
         studentCourseVersion.add(new StudentCourse(name, credit));
         student.terms.getLast().studentCourses.add(studentCourseVersion.getLast());
     }
-
+    /**
+     * Removes a student from this course.
+     * Disassociates the student from the course and updates the student's term information.
+     *
+     * @param student The student to be removed.
+     */
     public void RemoveStudent(Student student) {
         student.terms.getLast().studentCourses.remove(studentCourseVersion.get(students.indexOf(student)));
         students.remove(student);
     }
-
+    /**
+     * Retrieves the top-performing student in this course.
+     * The top student is determined based on their scores in the course.
+     *
+     * @return The student with the highest score.
+     */
     public Student GetTopStudent() {
         Student[] s = new Student[students.size()];
         for (int i = 0; i < students.size(); i++) {
@@ -50,5 +69,21 @@ public class Course {
             }
         }
 
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

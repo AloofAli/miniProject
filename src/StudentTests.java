@@ -107,7 +107,7 @@ public class StudentTests {
         result.add(course4.studentCourseVersion.getFirst());
         result.add(course5.studentCourseVersion.getFirst());
         result.add(course6.studentCourseVersion.getFirst());
-        assertEquals(result,student.termCourseDetail());
+        assertEquals( result,student.termCourseDetail());
     }
     /**
      * Rigorously test the `termCourseDetail` function of the `Student` class.
@@ -153,118 +153,211 @@ public class StudentTests {
         Assertions.assertEquals(result,student.termCourseDetail(2));
     }
 
+    /**
+     * Rigorously tests the `termCreditDetail` function of the `Student` class.
+     * This method verifies that the total credits for a student in a term are correctly calculated.
+     */
     @Test
     public void testTermCreditDetail() {
-        Student student=new Student();
-        Teacher teacher=new Teacher();
-        Course course=new Course("AP",3);
-        Course course2=new Course("BP",3);
-        Course course3=new Course("DB",3);
-        Course course4 = new Course("Ds",2);
-        Course course5 = new Course("DLC",2);
-        Course course6 = new Course("EC",3);
+        // Create a new student
+        Student student = new Student();
+
+        // Create a teacher
+        Teacher teacher = new Teacher();
+
+        // Create courses
+        Course course = new Course("AP", 3);
+        Course course2 = new Course("BP", 3);
+        Course course3 = new Course("DB", 3);
+        Course course4 = new Course("Ds", 2);
+        Course course5 = new Course("DLC", 2);
+        Course course6 = new Course("EC", 3);
+
+        // Start a new term for the student
         student.newTerm();
+
+        // Add courses to the student
         student.addCourse(course);
         student.addCourse(course2);
         student.addCourse(course3);
         student.addCourse(course4);
+
+        // Add a course to the student via a teacher
         course5.AddStudent(student);
+
+        // Add a course to the teacher
         teacher.AddCourse(course6);
-        teacher.AddStudent(course6,student);
-        Assertions.assertEquals(16,student.termCreditDetail());
-    }
-    @Test
-    public void testTermCreditDetail2() {
-        Student student=new Student();
-        Teacher teacher=new Teacher();
-        Course course=new Course("AP",3);
-        Course course2=new Course("BP",3);
-        Course course3=new Course("DB",3);
-        Course course4 = new Course("Ds",2);
-        Course course5 = new Course("DLC",2);
-        Course course6 = new Course("EC",3);
-        student.newTerm();
-        student.addCourse(course);
-        student.addCourse(course2);
-        student.newTerm();
-        student.addCourse(course3);
-        student.addCourse(course4);
-        course5.AddStudent(student);
-        teacher.AddCourse(course6);
-        teacher.AddStudent(course6,student);
-        Assertions.assertEquals(10,student.termCreditDetail(2));
-    }
-    @Test
-    public void testTermAvgDetail() {
-        Student student=new Student();
-        Teacher teacher=new Teacher();
-        Teacher teacher2=new Teacher();
-        Teacher teacher3=new Teacher();
-        Teacher teacher4=new Teacher();
-        Teacher teacher5=new Teacher();
-        Course course=new Course("AP",1);
-        Course course2=new Course("BP",0);
-        Course course3=new Course("DB",1);
-        Course course4 = new Course("Ds",1);
-        Course course5 = new Course("DLC",1);
-        Course course6 = new Course("EC",1);
-        student.newTerm();
-        teacher5.AddCourse(course6);
-        teacher5.AddCourse(course5);
-        teacher4.AddCourse(course4);
-        teacher3.AddCourse(course3);
-        teacher2.AddCourse(course2);
-        teacher.AddCourse(course);
-        teacher.AddStudent(course,student);
-        teacher2.AddStudent(course2,student);
-        teacher3.AddStudent(course3,student);
-        teacher4.AddStudent(course4,student);
-        teacher5.AddStudent(course5,student);
-        teacher5.AddStudent(course6,student);
-        teacher.Score(course,student,10);
-        teacher2.Score(course2,student,11);
-        teacher3.Score(course3,student,12);
-        teacher4.Score(course4,student,13);
-        teacher5.Score(course5,student,14);
-        teacher5.Score(course6,student,15);
-        Assertions.assertEquals(12.8,student.termAvgDetail());
+        teacher.AddStudent(course6, student);
+
+        // Verify that the total credits for the term are correctly calculated
+        Assertions.assertEquals(16, student.termCreditDetail());
     }
 
+    /**
+     * Rigorously tests the `termCreditDetail` function of the `Student` class for a specific term.
+     * This method verifies that the total credits for a student in the specified term are correctly calculated.
+     *
+     *
+     */
+    @Test
+    public void testTermCreditDetail2() {
+        // Create a new student
+        Student student = new Student();
+
+        // Create a teacher
+        Teacher teacher = new Teacher();
+
+        // Create courses
+        Course course = new Course("AP", 3);
+        Course course2 = new Course("BP", 3);
+        Course course3 = new Course("DB", 3);
+        Course course4 = new Course("Ds", 2);
+        Course course5 = new Course("DLC", 2);
+        Course course6 = new Course("EC", 3);
+
+        // Start a new term for the student
+        student.newTerm();
+
+        // Add courses to the student
+        student.addCourse(course);
+        student.addCourse(course2);
+
+        // Start another new term for the student
+        student.newTerm();
+
+        // Add more courses to the student
+        student.addCourse(course3);
+        student.addCourse(course4);
+
+        // Add a course to the student via a teacher
+        course5.AddStudent(student);
+
+        // Add a course to the teacher
+        teacher.AddCourse(course6);
+        teacher.AddStudent(course6, student);
+
+        // Verify that the total credits for the specified term are correctly calculated
+        Assertions.assertEquals(10, student.termCreditDetail(2));
+    }
+
+    /**
+     * Rigorously tests the `termAvgDetail` function of the `Student` class.
+     * This method verifies that the average score for a student in a term is correctly calculated.
+     *
+     * @return The average score for the term.
+     */
+    @Test
+    public void testTermAvgDetail() {
+        // Create a new student
+        Student student = new Student();
+
+        // Create teachers
+        Teacher teacher = new Teacher();
+        Teacher teacher2 = new Teacher();
+        Teacher teacher3 = new Teacher();
+        Teacher teacher4 = new Teacher();
+        Teacher teacher5 = new Teacher();
+
+        // Create courses
+        Course course = new Course("AP", 1);
+        Course course2 = new Course("BP", 0);
+        Course course3 = new Course("DB", 1);
+        Course course4 = new Course("Ds", 1);
+        Course course5 = new Course("DLC", 1);
+        Course course6 = new Course("EC", 1);
+
+        // Start a new term for the student
+        student.newTerm();
+
+        // Add courses to the student via teachers
+        teacher.AddCourse(course);
+        teacher2.AddCourse(course2);
+        teacher3.AddCourse(course3);
+        teacher4.AddCourse(course4);
+        teacher5.AddCourse(course5);
+        teacher5.AddCourse(course6);
+
+        // Add students to the courses
+        teacher.AddStudent(course, student);
+        teacher2.AddStudent(course2, student);
+        teacher3.AddStudent(course3, student);
+        teacher4.AddStudent(course4, student);
+        teacher5.AddStudent(course5, student);
+        teacher5.AddStudent(course6, student);
+
+        // Score the students
+        teacher.Score(course, student, 10);
+        teacher2.Score(course2, student, 11);
+        teacher3.Score(course3, student, 12);
+        teacher4.Score(course4, student, 13);
+        teacher5.Score(course5, student, 14);
+        teacher5.Score(course6, student, 15);
+
+        // Verify that the average score for the term is correctly calculated
+        Assertions.assertEquals(12.8, student.termAvgDetail());
+    }
+
+    /**
+     * Rigorously tests the `termAvgDetail` function of the `Student` class for a specific term.
+     * This method verifies that the average score for a student in the specified term is correctly calculated.
+     *
+     * @return The average score for the term.
+     */
     @Test
     public void testTermAvgDetail2() {
-        Student student=new Student();
-        Teacher teacher=new Teacher();
-        Teacher teacher2=new Teacher();
-        Teacher teacher3=new Teacher();
-        Teacher teacher4=new Teacher();
-        Teacher teacher5=new Teacher();
-        Course course=new Course("AP",1);
-        Course course2=new Course("BP",0);
-        Course course3=new Course("DB",1);
-        Course course4 = new Course("Ds",1);
-        Course course5 = new Course("DLC",1);
-        Course course6 = new Course("EC",1);
+        // Create a new student
+        Student student = new Student();
+
+        // Create teachers
+        Teacher teacher = new Teacher();
+        Teacher teacher2 = new Teacher();
+        Teacher teacher3 = new Teacher();
+        Teacher teacher4 = new Teacher();
+        Teacher teacher5 = new Teacher();
+
+        // Create courses
+        Course course = new Course("AP", 1);
+        Course course2 = new Course("BP", 0);
+        Course course3 = new Course("DB", 1);
+        Course course4 = new Course("Ds", 1);
+        Course course5 = new Course("DLC", 1);
+        Course course6 = new Course("EC", 1);
+
+        // Start a new term for the student
         student.newTerm();
-        teacher5.AddCourse(course6);
-        teacher5.AddCourse(course5);
-        teacher4.AddCourse(course4);
-        teacher3.AddCourse(course3);
-        teacher2.AddCourse(course2);
+
+        // Add courses to the student via teachers
         teacher.AddCourse(course);
-        teacher.AddStudent(course,student);
-        teacher2.AddStudent(course2,student);
-        teacher3.AddStudent(course3,student);
-        teacher4.AddStudent(course4,student);
-        teacher5.AddStudent(course5,student);
-        teacher.Score(course,student,10);
-        teacher2.Score(course2,student,11);
-        teacher3.Score(course3,student,12);
-        teacher4.Score(course4,student,13);
-        teacher5.Score(course5,student,14);
+        teacher2.AddCourse(course2);
+        teacher3.AddCourse(course3);
+        teacher4.AddCourse(course4);
+        teacher5.AddCourse(course5);
+        teacher5.AddCourse(course6);
+
+        // Add students to the courses
+        teacher.AddStudent(course, student);
+        teacher2.AddStudent(course2, student);
+        teacher3.AddStudent(course3, student);
+        teacher4.AddStudent(course4, student);
+        teacher5.AddStudent(course5, student);
+        teacher5.AddStudent(course6, student);
+
+        // Score the students
+        teacher.Score(course, student, 10);
+        teacher2.Score(course2, student, 11);
+        teacher3.Score(course3, student, 12);
+        teacher4.Score(course4, student, 13);
+        teacher5.Score(course5, student, 14);
+
+        // Start another new term for the student
         student.newTerm();
-        teacher5.AddStudent(course6,student);
-        teacher5.Score(course6,student,15);
-        Assertions.assertEquals(15,student.termAvgDetail(2));
+
+        // Add a course to the student via a teacher
+        teacher5.AddStudent(course6, student);
+        teacher5.Score(course6, student, 15);
+
+        // Verify that the average score for the specified term is correctly calculated
+        Assertions.assertEquals(15, student.termAvgDetail(2));
     }
 
     @Test
