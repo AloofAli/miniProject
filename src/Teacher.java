@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Teacher {
 
@@ -24,6 +25,7 @@ public class Teacher {
 
     public void AddCourse(Course course){
         courses.add(course);
+        course.teacherName=name;
     }
     public void RemoveCourse(Course course){
         courses.remove(course);
@@ -56,7 +58,7 @@ public class Teacher {
     public void Score(Course course, Student student, double score) {
         for (int i = 0; i <courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.size() ; i++) {
 
-        if(courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.get(i).getName()==course.name){
+        if(Objects.equals(courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.get(i).getName(), course.name)){
             courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.get(i).setScore(score);
         }
         }

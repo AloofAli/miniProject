@@ -11,7 +11,7 @@ int credit;
         this.credit = credit;
       studentCourseVersion=new StudentCourse(name, credit);
     }
-Teacher teacher;
+String teacherName;
 
 
 ArrayList<Student>students=new ArrayList<>();
@@ -21,24 +21,24 @@ ArrayList<Assignment> ActiveAssignment=new ArrayList<>();
 
     public void AddStudent(Student student){
     students.add(student);
-    student.addCourse(this);
+    student.terms.getLast().studentCourses.add(studentCourseVersion);
 }
 public void RemoveStudent(Student student){
     students.remove(student);
     StudentCourse removeHelper=new StudentCourse(name, credit);
     student.terms.getLast().studentCourses.remove(removeHelper);
 }
-public String GetTopStudent() {
+public double GetTopStudent() {
     ArrayList<StudentCourse> sorted = new ArrayList<>();
     for (int i = 0; i < students.size(); i++) {
-        for (int j = 0; j < students.get(i).terms.size(); j++) {
+        for (int j = 0; j < students.get(i).terms.getLast().studentCourses.size(); j++) {
             if (students.get(i).terms.getLast().studentCourses.get(j).getName() == name) {
                 sorted.add(students.get(i).terms.getLast().studentCourses.get(j));
             }
         }
     }
     Collections.sort(sorted, (o1, o2) -> o1.getScore().compareTo(o2.getScore()));
-    return sorted.getFirst().getName();
+    return sorted.getFirst().getScore();
 }
 
 }

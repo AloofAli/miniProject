@@ -49,9 +49,7 @@ public class Student {
      * @param course the course to be added
      */
     public void addCourse(Course course) {
-        // have test
-        terms.getLast().studentCourses.add(course.studentCourseVersion);
-
+        course.AddStudent(this);
     }
 
     /**
