@@ -29,7 +29,8 @@ public class StudentCourse {
         return score;
     }
 
+
     public void setScore(double score) {
-        this.score = score;
+        this.score=score;
     }
 }

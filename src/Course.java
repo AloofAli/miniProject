@@ -1,44 +1,40 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Course {
-BeheshtiUniversityField beheshtiUniversityField;
-String name;
-int credit;
+    BeheshtiUniversityField beheshtiUniversityField;
+    String name;
+    int credit;
     StudentCourse studentCourseVersion;
+
     public Course(String name, int credit) {
         this.name = name;
         this.credit = credit;
-      studentCourseVersion=new StudentCourse(name, credit);
+        studentCourseVersion = new StudentCourse(name, credit);
     }
-String teacherName;
 
+    String teacherName;
 
-ArrayList<Student>students=new ArrayList<>();
-ArrayList<Assignment> AllAssignment=new ArrayList<>();
-ArrayList<Assignment> ActiveAssignment=new ArrayList<>();
+    ArrayList<Student> students = new ArrayList<>();
+    ArrayList<Assignment> AllAssignments = new ArrayList<>();
+    ArrayList<Assignment> ActiveAssignments = new ArrayList<>();
 
-
-    public void AddStudent(Student student){
-    students.add(student);
-    student.terms.getLast().studentCourses.add(studentCourseVersion);
-}
-public void RemoveStudent(Student student){
-    students.remove(student);
-    StudentCourse removeHelper=new StudentCourse(name, credit);
-    student.terms.getLast().studentCourses.remove(removeHelper);
-}
-public double GetTopStudent() {
-    ArrayList<StudentCourse> sorted = new ArrayList<>();
-    for (int i = 0; i < students.size(); i++) {
-        for (int j = 0; j < students.get(i).terms.getLast().studentCourses.size(); j++) {
-            if (students.get(i).terms.getLast().studentCourses.get(j).getName() == name) {
-                sorted.add(students.get(i).terms.getLast().studentCourses.get(j));
-            }
-        }
+    public void AddStudent(Student student) {
+        students.add(student);
+        student.terms.getLast().studentCourses.add(studentCourseVersion);
     }
-    Collections.sort(sorted, (o1, o2) -> o1.getScore().compareTo(o2.getScore()));
-    return sorted.getFirst().getScore();
-}
 
+    public void RemoveStudent(Student student) {
+        students.remove(student);
+        student.terms.getLast().studentCourses.remove(studentCourseVersion);
+    }
+
+    public Student GetTopStudent() {
+            sort(students);
+            return students.getFirst();
+    }
+    private void sort(ArrayList<Student>students){
+        students.sort((o1,o2)
+                ->o1.terms.getLast().studentCourses.get(o1.terms.getLast().studentCourses.indexOf(studentCourseVersion)).getScore().compareTo(
+                o2.terms.getLast().studentCourses.get(o2.terms.getLast().studentCourses.indexOf(studentCourseVersion)).getScore()));
+    }
 }

@@ -8,7 +8,11 @@ public class Assignment {
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
     Date deadLine;
 
-    boolean Active;
+    boolean Active=false;
+
+    public Assignment(String subject) {
+        this.subject = subject;
+    }
 
 
     public String getSubject() {

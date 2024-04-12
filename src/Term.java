@@ -6,7 +6,7 @@ public class Term {
     int totalThisTermCredit =0;
     private double avg=0;
     private int termNumber;
-     ArrayList<StudentCourse> studentCourses =new ArrayList<>();
+     ArrayList<StudentCourse> studentCourses =new ArrayList<StudentCourse>();
     public int getTermNumber() {
         return termNumber;
     }
@@ -33,6 +33,9 @@ public class Term {
             totalThisTermCredit +=studentCourses.get(i).getCredit();
         }
         return totalThisTermCredit;
+    }
+    public void setScore(StudentCourse studentCourse,double score) {
+        studentCourse.score=score;
     }
 
 

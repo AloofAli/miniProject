@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Teacher {
 
     private String name;
-    private ArrayList<Course> courses = new ArrayList<>();
+     ArrayList<Course> courses = new ArrayList<>();
 
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
     private Date BirthDate;
@@ -31,52 +31,41 @@ public class Teacher {
         courses.remove(course);
     }
     public void AddStudent(Course course,Student student) {
-        courses.get(courses.indexOf(course)).AddStudent(student);
+        course.AddStudent(student);
     }
 
     public void RemoveStudent(Course course,Student student) {
-        courses.get(courses.indexOf(course)).RemoveStudent(student);
+        course.RemoveStudent(student);
 
     }
 
     public void AddAssignment(Course course,Assignment assignment) {
-        courses.get(courses.indexOf(course)).ActiveAssignment.add(assignment);
-        courses.get(courses.indexOf(course)).AllAssignment.add(assignment);
+        course.AllAssignments.add(assignment);
     }
 
     public void RemoveAssignment(Course course , Assignment assignment) {
-        courses.get(courses.indexOf(course))
-                                                            .ActiveAssignment
-                                                                     .remove(assignment);
-
-        courses.get(courses.indexOf(course))
-                                                            .AllAssignment.get(courses.get(courses.indexOf(course))
-                                                                     .AllAssignment.indexOf(assignment))
-                                                                              .setActive(false);
+        if (assignment.Active){
+        course.ActiveAssignments.remove(assignment);}
     }
 
     public void Score(Course course, Student student, double score) {
-        for (int i = 0; i <courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.size() ; i++) {
+        for (int i = 0; i <student.terms.getLast().studentCourses.size() ; i++) {
 
-        if(Objects.equals(courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.get(i).getName(), course.name)){
-            courses.get(courses.indexOf(course)).students.get(courses.get(courses.indexOf(course)).students.indexOf(student)).terms.getLast().studentCourses.get(i).setScore(score);
+        if(student.terms.getLast().studentCourses.get(i).name==course.name){
+            student.terms.getLast().studentCourses.get(i).setScore(score);
         }
         }
     }
 
     public void DeadLineTimeEdit(Course course, Assignment assignment, Date newDate) {
-        courses.get(courses.indexOf(course)).AllAssignment.get( courses.get(courses.indexOf(course)).AllAssignment.indexOf(assignment)).setDeadLine(newDate);
-        courses.get(courses.indexOf(course)).ActiveAssignment.get( courses.get(courses.indexOf(course)).ActiveAssignment.indexOf(assignment)).setDeadLine(newDate);
+        courses.get(courses.indexOf(course)).AllAssignments.get( courses.get(courses.indexOf(course)).AllAssignments.indexOf(assignment)).setDeadLine(newDate);
+        courses.get(courses.indexOf(course)).ActiveAssignments.get( courses.get(courses.indexOf(course)).ActiveAssignments.indexOf(assignment)).setDeadLine(newDate);
     }
 
-    public void AssignmentActivator(Course course, Assignment assignment, boolean isActive) {
-        courses.get(courses.indexOf(course)).AllAssignment.get( courses.get(courses.indexOf(course)).AllAssignment.indexOf(assignment)).setActive(isActive);
-        if (isActive)
-        courses.get(courses.indexOf(course)).ActiveAssignment.get( courses.get(courses.indexOf(course)).ActiveAssignment.indexOf(assignment)).setActive(true);
-        else {
-            courses.get(courses.indexOf(course)).ActiveAssignment.remove(assignment);
-        }
-    }
+    public void AssignmentActivator(Course course, Assignment assignment ){
+        courses.get(courses.indexOf(course)).AllAssignments.get( courses.get(courses.indexOf(course)).AllAssignments.indexOf(assignment)).setActive(true);
+        courses.get(courses.indexOf(course)).ActiveAssignments.add(assignment);}
+
 
 
     public Date getBirthDate() {
@@ -150,5 +139,7 @@ public class Teacher {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+ public Student getTopStudent(Course course ){
+        return course.GetTopStudent();
+ }
 }
