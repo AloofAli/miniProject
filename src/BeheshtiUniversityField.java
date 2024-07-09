@@ -1,8 +1,10 @@
+import java.io.Serializable;
+
 /**
  * Represents fields of study at Beheshti University.
  * Each field has a description associated with it.
  */
-public enum BeheshtiUniversityField {
+public enum BeheshtiUniversityField implements Serializable {
     COMPUTER_SCIENCE,
     LIFE_SCIENCE,
     SPORT_SCIENCE,

@@ -1,17 +1,22 @@
+
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
+
 /**
  * Represents an academic assignment.
  * An assignment has a subject, a deadline, and an active status.
  */
-public class Assignment {
-    String subject;// The subject of the assignment
+public class Assignment implements Serializable {
 
-    private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");// Date format for deadlines
-    Date deadLine; // The deadline for completing the assignment
+    private String description;
+    private String subject; // The subject of the assignment
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd "); // Date format for deadlines
+    private Date deadLine; // The deadline for completing the assignment
+    private boolean Active = false; // Indicates whether the assignment is currently active
 
-    boolean Active=false;// Indicates whether the assignment is currently active
     /**
      * Constructs an assignment with the given subject.
      *
@@ -21,6 +26,15 @@ public class Assignment {
         this.subject = subject;
     }
 
+
+    public Assignment(String subject, Date deadLine, String description) {
+        this.subject = subject;
+        this.deadLine = deadLine;
+        this.description = description;
+    }
+
+    public Assignment() {
+    }
 
     public String getSubject() {
         return subject;
@@ -48,5 +62,36 @@ public class Assignment {
 
     public void setActive(boolean active) {
         Active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Assignment that = (Assignment) o;
+        return Objects.equals(subject, that.subject);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(subject);
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "subject='" + subject + '\'' +
+                ", dateFormat=" + dateFormat +
+                ", deadLine=" + deadLine +
+                ", Active=" + Active +
+                '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

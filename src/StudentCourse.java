@@ -1,13 +1,14 @@
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * Represents a student's performance in a specific course.
  * Each student course has a name, credit value, and score.
- * * Associates the student with the course
+ * Associates the student with the course.
  */
-public class StudentCourse {
-    String name;
-    Double score=0.0;
-
-
+public class StudentCourse implements Serializable {
+    private String name;
+    private double score;
     private int credit; // The credit value of the course
 
     /**
@@ -19,6 +20,10 @@ public class StudentCourse {
     public StudentCourse(String name, int credit) {
         this.name = name;
         this.credit = credit;
+        this.score = 0;
+    }
+
+    public StudentCourse() {
     }
 
     public int getCredit() {
@@ -37,12 +42,33 @@ public class StudentCourse {
         this.name = name;
     }
 
-    public Double getScore() {
+    public double getScore() {
         return score;
     }
 
-
     public void setScore(double score) {
-        this.score=score;
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentCourse{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                ", credit=" + credit +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentCourse that = (StudentCourse) o;
+        return credit == that.credit && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, credit);
     }
 }
